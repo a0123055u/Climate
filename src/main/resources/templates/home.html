@@ -1,0 +1,217 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Home Page1</title></head>
+<link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"
+        rel="stylesheet">
+<body>
+<h1>Hello !</h1>
+<p class="h1">Welcome to <span th:text="${appName}"></span></p>
+<div class="container">
+        <table class="table table-striped">
+            <caption></caption>
+            <thead>
+                <tr>
+               <!--  "time":1566981857,"summary":"Partly Cloudy","icon":"partly-cloudy-day","nearestStormDistance":0,
+               "precipIntensity":0.0154,"precipProbability":0.2,"precipType":"rain","temperature":76.53,"apparentTemperature":77.2,
+               "dewPoint":66.28,"humidity":0.71,"pressure":1006.24,"windSpeed":8.02,"windGust":14.38,"windBearing":258,"
+               cloudCover":0.46,"uvIndex":1,"visibility":6.097,"ozone":296-->
+                    <th>Place </th>                    
+                    <th>Temprature(Faren Heat)</th>
+                    <th>Summary</th>
+                    <th>DewPoint(degree Farenheat)</th>
+                     <th>Humidity(cubic meter)</th>
+                      <th>Pressure(Pascal)</th>
+                       <th>WindSpeed(KM/hr)</th>
+                        <th>UvIndex(mW/cm2)</th>
+                         <th>Visibility(kM)</th>
+                          <th>Ozone(Dobson)</th>                         
+                            
+                    <th>Get Summary</th>                    
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td id="location" value="1" >Campbell, CA</td>                       
+                        <td><p id="temp1" ></p></td>
+                        <td><p id="summary1" ></p></td>
+                        <td><p id="dewPoint1" ></p></td>
+                        <td><p id="humidity1" ></p></td>
+                        <td><p id="pressure1" ></p></td>
+                        <td><p id="windSpeed1" ></p></td>
+                        <td><p id="uvIndex1" ></p></td>
+                        <td><p id="visibility1" ></p></td>
+                        <td><p id="ozone1" ></p></td>
+                        
+                        
+                        <td><button class="btn btn-warning" id="btn1" value="1" >Get Summary</button></td>
+                        
+                    </tr>                    
+                    <tr>
+                        <td id="3">Omaha, NE</td>                       
+                        <td> <p id="temp2" ></p></td>
+                        <td><p id="summary2" ></p></td>
+                        <td><p id="dewPoint2" ></p></td>
+                        <td><p id="humidity2" ></p></td>
+                        <td><p id="pressure2" ></p></td>
+                        <td><p id="windSpeed2" ></p></td>
+                        <td><p id="uvIndex2" ></p></td>
+                        <td><p id="visibility2" ></p></td>
+                        <td><p id="ozone2" ></p></td>
+                        <td><button class="btn btn-warning" id="btn2" value="2">Get Summary</button></td>
+                        
+                    </tr>
+                    <tr>
+                        <td id="4">Austin, TX</td>                       
+                        <td> <p id="temp3" ></p></td>                        
+                        <td><p id="summary3" ></p></td>
+                        <td><p id="dewPoint3" ></p></td>
+                        <td><p id="humidity3" ></p></td>
+                        <td><p id="pressure3" ></p></td>
+                        <td><p id="windSpeed3" ></p></td>
+                        <td><p id="uvIndex3" ></p></td>
+                        <td><p id="visibility3" ></p></td>
+                        <td><p id="ozone3" ></p></td>
+                        <td><button class="btn btn-warning" id="btn3" value="3">Get Summary</button></td>                        
+                    </tr>
+                    <tr>
+                        <td id="5">Niseko, Japan</td>
+                       
+                        <td> <p id="temp4" ></p></td>                        
+                        <td><p id="summary4" ></p></td>
+                        <td><p id="dewPoint4" ></p></td>
+                        <td><p id="humidity4" ></p></td>
+                        <td><p id="pressure4" ></p></td>
+                        <td><p id="windSpeed4" ></p></td>
+                        <td><p id="uvIndex4" ></p></td>
+                        <td><p id="visibility4" ></p></td>
+                        <td><p id="ozone4" ></p></td>
+                        <td><button class="btn btn-warning" id="btn4" value="4">Get Summary</button></td>                        
+                    </tr>
+                    <tr>
+                        <td >Nara, Japan </td>
+                        <td> <p id="temp5" ></p></td>                        
+                        <td><p id="summary5" ></p></td>
+                        <td><p id="dewPoint5" ></p></td>
+                        <td><p id="humidity5" ></p></td>
+                        <td><p id="pressure5" ></p></td>
+                        <td><p id="windSpeed5" ></p></td>
+                        <td><p id="uvIndex5" ></p></td>
+                        <td><p id="visibility5" ></p></td>
+                        <td><p id="ozone5" ></p></td>
+                        <td><button class="btn btn-warning" id="btn5" value="5">Get Summary</button></td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Jakarta, Indonesia </td>                        
+                        <td> <p id="temp6" ></p></td>                        
+                        <td><p id="summary6" ></p></td>
+                        <td><p id="dewPoint6" ></p></td>
+                        <td><p id="humidity6" ></p></td>
+                        <td><p id="pressure6" ></p></td>
+                        <td><p id="windSpeed6" ></p></td>
+                        <td><p id="uvIndex6" ></p></td>
+                        <td><p id="visibility6" ></p></td>
+                        <td><p id="ozone6" ></p></td>
+                        <td><button class="btn btn-warning" id="btn6" value="6">Get Summary</button></td>
+                       
+                    </tr>
+            </tbody>
+        </table>
+        
+        <script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+        <script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </div>
+    <script>
+    $('#btn1').click(function() {
+    var id = $('#btn1').val()?$('#btn1').val():alert('pls fill the required field');
+    console.log("id",id);
+    if(id){
+        callBackEnd(id);
+    }
+});
+$('#btn2').click(function() {
+    var id = $('#btn2').val()?$('#btn2').val():alert('pls fill the required field');
+    console.log("id",id);
+    if(id){
+        callBackEnd(id);
+    }
+});
+$('#btn3').click(function() {
+    var id = $('#btn3').val()?$('#btn3').val():alert('pls fill the required field');
+    console.log("id",id);
+    if(id){
+        callBackEnd(id);
+    }
+});
+$('#btn4').click(function() {
+    var id = $('#btn4').val()?$('#btn4').val():alert('pls fill the required field');
+    console.log("id",id);
+    if(id){
+        callBackEnd(id);
+    }
+});
+$('#btn5').click(function() {
+    var id = $('#btn5').val()?$('#btn5').val():alert('pls fill the required field');
+    console.log("id",id);
+    if(id){
+        callBackEnd(id);
+    }
+});
+$('#btn6').click(function() {
+    var id = $('#btn6').val()?$('#btn6').val():alert('pls fill the required field');
+    console.log("id",id);
+    if(id){
+        callBackEnd(id);
+    }
+});
+function callBackEnd(id){
+$.ajax({
+            url: '/get-temp/',
+            contentType: "application/json",
+            method: 'post',
+            dataType: 'text',
+            data:id,
+            success: function(data){
+
+              
+              if(data){
+              console.log(data);
+              var val = JSON.parse(data);
+              var currentPrediction = val["currently"];
+              var temp = currentPrediction["temperature"];
+              var summary = currentPrediction['summary'];
+              var dewpoint = currentPrediction['dewPoint'];
+              var humidity =  currentPrediction['humidity'];
+              var pressure =  currentPrediction['pressure'];
+              var windSpeed =  currentPrediction['windSpeed'];
+              var uvIndex =  currentPrediction['uvIndex'];
+              var visibility =  currentPrediction['visibility'];
+              var ozone =  currentPrediction['ozone'];           
+              
+              
+              $('#temp'+id).text(JSON.stringify(temp));
+               $('#summary'+id).text(JSON.stringify(summary));
+                $('#dewPoint'+id).text(JSON.stringify(dewpoint));
+                 $('#humidity'+id).text(JSON.stringify(humidity));
+                  $('#pressure'+id).text(JSON.stringify(pressure));
+                   $('#windSpeed'+id).text(JSON.stringify(windSpeed));
+                   $('#uvIndex'+id).text(JSON.stringify(uvIndex));
+                    $('#visibility'+id).text(JSON.stringify(visibility));
+                     $('#ozone'+id).text(JSON.stringify(ozone));
+              
+              
+            }
+                        
+               else{
+                   alert("No Data Found");
+                }
+            },error:function(test){
+            console.log("Test",test);
+            }
+        });
+};
+    
+    </script>
+</body>
+</html>
