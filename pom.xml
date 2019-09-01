@@ -39,10 +39,9 @@
     
 		
 		 <dependency>
-        <groupId>org.mongodb</groupId>
-        <artifactId>mongodb-driver-sync</artifactId>
-        <version>3.11.0</version>
-    </dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
 		
 		<dependency>
     <groupId>org.webjars</groupId>

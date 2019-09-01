@@ -1,6 +1,9 @@
 package com.example.climate.model;
 
+import org.springframework.data.annotation.Id;
+
 public class Climate {
+	@Id
 	private String id;
 	private String latitude;
 	private String longitute;

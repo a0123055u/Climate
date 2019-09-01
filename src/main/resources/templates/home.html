@@ -12,10 +12,7 @@
             <caption></caption>
             <thead>
                 <tr>
-               <!--  "time":1566981857,"summary":"Partly Cloudy","icon":"partly-cloudy-day","nearestStormDistance":0,
-               "precipIntensity":0.0154,"precipProbability":0.2,"precipType":"rain","temperature":76.53,"apparentTemperature":77.2,
-               "dewPoint":66.28,"humidity":0.71,"pressure":1006.24,"windSpeed":8.02,"windGust":14.38,"windBearing":258,"
-               cloudCover":0.46,"uvIndex":1,"visibility":6.097,"ozone":296-->
+               
                     <th>Place </th>                    
                     <th>Temprature(Faren Heat)</th>
                     <th>Summary</th>
@@ -123,12 +120,12 @@
         <script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </div>
     <script>
-    $('#btn1').click(function() {
-    var id = $('#btn1').val()?$('#btn1').val():alert('pls fill the required field');
-    console.log("id",id);
-    if(id){
-        callBackEnd(id);
-    }
+   $('#btn1').click(function() {
+   var id = $('#btn1').val()?$('#btn1').val():alert('pls fill the required field');
+   console.log("id",id);
+   if(id){
+       callBackEnd(id);
+   }
 });
 $('#btn2').click(function() {
     var id = $('#btn2').val()?$('#btn2').val():alert('pls fill the required field');
@@ -178,6 +175,7 @@ $.ajax({
               if(data){
               console.log(data);
               var val = JSON.parse(data);
+              val = val["value"]?JSON.parse(val["value"]):val;
               var currentPrediction = val["currently"];
               var temp = currentPrediction["temperature"];
               var summary = currentPrediction['summary'];

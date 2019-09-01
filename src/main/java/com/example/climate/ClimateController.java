@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.climate.service.ClimateService;
+
+
 //import com.google.gson.JsonObject;
 
 @Controller
@@ -30,10 +32,10 @@ public class ClimateController {
 	public String homePage1(@RequestBody String id, Model model) {
 		
 		ClimateService cs = new ClimateService();
-		String jsonResponse = cs.getOrCreateClimateParameter(id.toString());	
-		
+		String jsonResponse = cs.getOrCreateClimateParameter(id.toString());		
 				
 		return jsonResponse;
 		
 	}
+ 
 }
