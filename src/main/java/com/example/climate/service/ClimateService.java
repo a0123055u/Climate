@@ -79,50 +79,27 @@ public class ClimateService {
 		}
 		String response;
 		String responseMongoDB = null; 
-		int validateRecord = 0; 
+		boolean  foundRecordInDB = false; 
 		try {
 		RestTemplate restTemplate = new RestTemplate();
 		
-		 MongoClient mongoClient =  MongoClients.create("mongodb://localhost:27017");         
-		 MongoDatabase databases = mongoClient.getDatabase("climate");
-		 MongoCollection<Document> doc = databases.getCollection("parameters");
-		 BasicDBObject query = new BasicDBObject();
-		 BasicDBObject field = new BasicDBObject();
-		 field.put("key",id);
-		 FindIterable<Document> climateCollection = databases.getCollection("parameters").find();
-		 climateCollection = databases.getCollection("parameters").find(query);
-		 System.out.println("tt=================>"+climateCollection);
-
-		 for (Document test : climateCollection) {
-			 System.out.println("tesst--"+test.toJson());	
-			
-			 responseMongoDB = test.toJson();
-			 System.out.println();
-		 }
+		MongoDBService mongoService = new MongoDBService();
+		responseMongoDB = mongoService.findRecordById(id);	 
 		 
-		 ObjectMapper mapper = new ObjectMapper();
-		 Map<String, String> map = mapper.readValue(responseMongoDB, Map.class);
-		 System.out.println("parse-------------------------------------"+map.get("key"));
-		 
-		 if(responseMongoDB!=null && (Integer.parseInt(map.get("key")) == Integer.parseInt(id))) {
-			 
-			 mongoClient.close();
+		 if(responseMongoDB != null) {
 			 return responseMongoDB;
 		 }
 		 else{
-			 if(!url.isEmpty()) {				
-					
+			 if(!url.isEmpty()) {
 					LOGGER.info("Before Entering External API");
 					 response = restTemplate.getForObject(url, String.class);
-					 Document  document = new Document();
-					 document.put("key", id);
-					 document.put("value", response.toString());
-					 doc.insertOne(document);						
+					 mongoService.insertRecord(response, id);										
 				}
 				else {
-					return "No ID found";			}			 
+						return "No ID found";		
+					}			 
 		 }		
-		 mongoClient.close();
+		
 		}catch(Exception ex) {
 			
 			return ex.toString();
