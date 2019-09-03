@@ -176,6 +176,8 @@ $.ajax({
               console.log(data);
               var val = JSON.parse(data);
               val = val["value"]?JSON.parse(val["value"]):val;
+              if(val){
+              
               var currentPrediction = val["currently"];
               var temp = currentPrediction["temperature"];
               var summary = currentPrediction['summary'];
@@ -186,7 +188,9 @@ $.ajax({
               var uvIndex =  currentPrediction['uvIndex'];
               var visibility =  currentPrediction['visibility'];
               var ozone =  currentPrediction['ozone'];           
-              
+              }else{
+              alert("No Respose found for given Location");
+              }
               
               $('#temp'+id).text(JSON.stringify(temp));
                $('#summary'+id).text(JSON.stringify(summary));

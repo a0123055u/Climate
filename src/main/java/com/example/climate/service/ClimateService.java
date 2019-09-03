@@ -1,46 +1,13 @@
 package com.example.climate.service;
 
 import java.util.logging.Logger;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.FileHandler;
-import java.util.logging.Formatter;
-import java.util.logging.Level;
-import java.util.logging.SimpleFormatter;
 
-import org.apache.tomcat.util.json.JSONParser;
-import org.bson.Document;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-import com.example.climate.model.Climate;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mongodb.BasicDBObject;
-import com.mongodb.client.ClientSession;
-import com.mongodb.client.FindIterable;
-//import com.mongodb.MongoClientURI;
-//import com.google.gson.JsonParser;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
-import static com.mongodb.client.model.Filters.*;
 //import com.example.climate.model.ClimateRepository;
 
 
 public class ClimateService {
-//	@Autowired
-//	private MongoTemplate mongoTemplate;
-//	@Autowired
-//	private ClimateRepository repository;
-	
  
 	
 	
@@ -78,8 +45,7 @@ public class ClimateService {
 			url = "";
 		}
 		String response;
-		String responseMongoDB = null; 
-		boolean  foundRecordInDB = false; 
+		String responseMongoDB = null; 		
 		try {
 		RestTemplate restTemplate = new RestTemplate();
 		
