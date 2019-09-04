@@ -1,11 +1,14 @@
 package com.example.climate.service;
 
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
 import org.bson.BsonTimestamp;
 import org.bson.Document;
-
+import org.bson.conversions.Bson;
+import org.springframework.data.mongodb.repository.Query;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.BasicDBObject;
@@ -15,6 +18,8 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+
 import java.util.logging.Logger;
 
 
@@ -65,10 +70,11 @@ public class MongoDBService {
 		 Document  document = new Document();
 		 DBObject db = new BasicDBObject();
 		 db.put("ts", new BsonTimestamp());
+		 LocalDate date = LocalDate.now();
 		 
 		 document.put("key", id);
 		 document.put("value", inputForMongoDB.toString());
-		 document.put("ts", new Date());
+		 document.put("ts", date);
 		 MongoCollection<Document> doc = databases.getCollection("parameters");
 		 doc.insertOne(document);
 		 mongoClient.close();
@@ -83,9 +89,17 @@ public class MongoDBService {
 	public boolean deleteRecordGrt3Days() {
 		boolean response = false; 
 		try {
+			LocalDate date = LocalDate.now().minusDays(3);			
+			Bson filter = Filters.lt("ts", date);
+//			BasicDBObject query = new BasicDBObject();
 		 MongoCollection<Document> doc = databases.getCollection("parameters");
-		 BasicDBObject query = new BasicDBObject();
-		 doc.deleteMany(query);
+//		 FindIterable<Document> climateCollection = databases.getCollection("parameters").find(filter);	
+//		 for(Document x: climateCollection) {
+//			 System.out.println(x);
+//		 }		
+		 
+		 doc.deleteMany(filter);
+		 mongoClient.close();
 		 response = true;
 		}
 		catch(Exception ex) {
