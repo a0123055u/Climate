@@ -1,0 +1,76 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Home Page</title></head>
+
+<link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="/project.css"
+        rel="stylesheet">
+<nav class="navbar navbar-expand-lg navbar-light bg-light climate-background">
+  <div class="container">
+    <a class="navbar-brand" href="/">Thiru App Demo </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Other Apps
+        </a>
+          <!-- Here's the magic. Add the .animate and .slide-in classes to your .dropdown-menu and you're all set! -->
+          <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" id="location">Find By Location </a>
+            <a class="dropdown-item" href="/log-out">Log out</a>
+            
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<body >
+<div class="container">
+<p class="h1 pull-rigth">Welcome to <span th:text="${appName}"></span></p>
+
+  <div class="form-group">
+    <label for="city">City</label>
+    <input type="text" class="form-control" id="city" aria-describedby="city" placeholder="...city">
+    <small id=city class="form-text text-muted">Pls enter correct spelling for exact match .</small>
+  </div>
+  <div class="form-group">
+    <label for="country">Country</label>
+    <input type="text" class="form-control" id="country" placeholder="..country">
+  </div>
+  
+  <button onClick="getClimateByLocation(city,country)" class="btn btn-primary">Get Climate</button>
+
+
+</div>
+</div>
+</body>
+<script type="text/javascript" src="webjars/jquery/1.9.1/jquery.js" ></script>
+<script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.bundle.js" ></script>
+<script type="text/javascript">
+function getClimateByLocation(){
+
+$.ajax({
+            url: '/get-climate-by-location/',
+            contentType: "application/json",
+            method: 'post',
+            dataType: 'text',
+            data:{"city":city,"country":country},
+            success: function(data){
+            console.log(data);
+            },error: function(fail){
+            alert(fail);
+            }
+});
+
+};
+
+
+
+</script>
+</html>

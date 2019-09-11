@@ -20,6 +20,8 @@ import com.example.climate.service.ClimateService;
 public class ClimateController {
 	@Value("${spring.application.name}")
 	String appName;	
+	@Value("${spring.application.name1}")
+	String appName1;
 //on load of application redirecting
 	@GetMapping("/")
     public String homePage(Model model) {
@@ -27,15 +29,23 @@ public class ClimateController {
         return "home";
 	}
 //	This method acts as a url directing for post from UI 
-	@RequestMapping(value = "/get-temp", method = RequestMethod.POST)
+
+
+	
+	@RequestMapping(value = "/get-location-page", method = RequestMethod.GET)
+    public String findByLocationPage(Model model) {
+        model.addAttribute("appName", appName1);
+        return "findByLocationPage";
+	}
+	
+	@RequestMapping(value = "/get-climate-by-location", method = RequestMethod.POST)
 	@ResponseBody	
-	public String homePage1(@RequestBody String id, Model model) {
+	public String homePage1(@RequestBody String city, @RequestBody String county) {
 		
 		ClimateService cs = new ClimateService();
-		String jsonResponse = cs.getOrCreateClimateParameter(id.toString());		
+		String jsonResponse = cs.getOrCreateClimateParameterByLocation(city, county);	
 				
-		return jsonResponse;
-		
+		return jsonResponse;		
 	}
  
 }

@@ -1,14 +1,40 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Home Page1</title></head>
-<link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"
+<title>Home Page</title></head>
+
+<link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="/project.css"
         rel="stylesheet">
-<body>
-<h1>Hello !</h1>
-<p class="h1">Welcome to <span th:text="${appName}"></span></p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light climate-background">
+  <div class="container">
+    <a class="navbar-brand" href="/">Thiru App Demo </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Other Apps
+        </a>
+          <!-- Here's the magic. Add the .animate and .slide-in classes to your .dropdown-menu and you're all set! -->
+          <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/get-location-page">Find By Location </a>
+            <a class="dropdown-item" href="/log-out">Log out</a>
+            
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<body >
+
 <div class="container">
-        <table class="table table-striped">
+<p class="h1 pull-rigth">Welcome to <span th:text="${appName}"></span></p>
+        <table class="table table-hover">
             <caption></caption>
             <thead>
                 <tr>
@@ -162,6 +188,14 @@ $('#btn6').click(function() {
         callBackEnd(id);
     }
 });
+$('#by-location').click(function(){
+
+	$.ajax({
+            url: '/get-temp/',
+            contentType: "application/json",
+            method: 'post',
+            success:function(data){alert("Navigated to new page");},error: function(fail){console.log(fail);}});
+});
 function callBackEnd(id){
 $.ajax({
             url: '/get-temp/',
@@ -215,5 +249,7 @@ $.ajax({
 };
     
     </script>
+    <script type="text/javascript" src="webjars/jquery/1.9.1/jquery.js" ></script>
+<script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.bundle.js" ></script>
 </body>
 </html>

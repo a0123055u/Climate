@@ -74,5 +74,21 @@ public class ClimateService {
 		
 		return response;
 	}
+	
+	
+	public String getOrCreateClimateParameterByLocation(String city, String country) {
+		String response=null ;
+		if(city != null && country != null) {
+			String x = "http://api.openweathermap.org/data/2.5/weather?q="+city+","+country+"&APPID="+"a8f77e1f023b4ff1ac1737309dcd3a86";
+			RestTemplate restTemplate = new RestTemplate();
+			if(!x.isEmpty()) {
+				 response = restTemplate.getForObject(x, String.class);
+				
+			}
+		}
+		
+		return response != null?response:"No Val found";
+	}
+	
 
 }
