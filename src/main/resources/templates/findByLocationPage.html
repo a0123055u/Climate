@@ -45,6 +45,27 @@
   </div>
   
   <button onClick="getClimateByLocation(city,country)" class="btn btn-primary">Get Climate</button>
+    <table class="table table-hover">
+            <caption></caption>
+            <thead>
+                <tr>
+               
+                    <th>Place </th>                    
+                    <th>Temprature(Faren Heat)</th>
+                    <th>Summary</th>                   
+                     <th>Humidity(cubic meter)</th>
+                      <th>Pressure(Pascal)</th>
+                       <th>WindSpeed(KM/hr)</th>                       
+                         <th>Visibility(kM)</th>
+                          <th>Location</th>                         
+                            
+                    <th>Get Summary</th>                    
+                </tr>
+            </thead>
+            <tbody>                   
+                        
+                    </tbody>
+                    </table>
 
 
 </div>
@@ -54,16 +75,31 @@
 <script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.bundle.js" ></script>
 <script type="text/javascript">
 function getClimateByLocation(){
-
+console.log("city",document.getElementById("city").value);
+console.log("country",document.getElementById("country").value);
 $.ajax({
             url: '/get-climate-by-location/',
             contentType: "application/json",
             method: 'post',
-            dataType: 'text',
-            data:{"city":city,"country":country},
+            dataType: 'json',
+            data:JSON.stringify({city:document.getElementById("city").value,country:document.getElementById("country").value}),
             success: function(data){
             console.log(data);
+            if(data){
+             	var place = data["name"]+" ,"+data["sys"].country;
+             	var temp = data["main"].temp;
+             	var summary = data["weather"][0].description;
+             	var humidity = data["main"].humidity;
+             	var pressure = data["main"].pressure;
+             	var wind = data["wind"].speed;
+             	var visibility = data["visibility"];
+             	var location  = data["coord"].lat+"lat"+" ,"+data["coord"].lon+"lon";
+             	console.log("location==",location);
+             	  var row = "<tr><td><label>"+place+"</label>"+"</td><td>"+"<label>"+temp+"</label>"+"</td><td>"+"<label>"+summary+"</label>"+"</td><td>"+"<label>"+humidity+"</label>"+"</td><td>"+"<label>"+pressure+"</label>"+"</td><td>"+"<label>"+wind+"</label>"+"</td><td>"+"<label>"+visibility+"</label>"+"</td><td>"+"<label>"+location+"</label>"+"</td><tr>";
+             	   $("table tbody").append(row);
+            }
             },error: function(fail){
+            console.log("Error", fail);
             alert(fail);
             }
 });

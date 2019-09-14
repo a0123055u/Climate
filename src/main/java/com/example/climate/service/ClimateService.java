@@ -1,8 +1,11 @@
 package com.example.climate.service;
 
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 import org.springframework.web.client.RestTemplate;
+
+import ch.qos.logback.core.boolex.Matcher;
 
 //import com.example.climate.model.ClimateRepository;
 
@@ -78,13 +81,23 @@ public class ClimateService {
 	
 	public String getOrCreateClimateParameterByLocation(String city, String country) {
 		String response=null ;
-		if(city != null && country != null) {
-			String x = "http://api.openweathermap.org/data/2.5/weather?q="+city+","+country+"&APPID="+"a8f77e1f023b4ff1ac1737309dcd3a86";
+		Pattern pattern = Pattern.compile("\\[^a-z]");
+		java.util.regex.Matcher matchCity = pattern.matcher(city);
+		java.util.regex.Matcher matchCountry = pattern.matcher(city);
+		boolean result1 = matchCity.matches();
+		boolean result2 = matchCountry.matches();
+		System.out.println(result1+"====> "+result2);
+		try {
+		if(city != null && country != null ) {
+			String url = "http://api.openweathermap.org/data/2.5/weather?q="+city+","+country+"&APPID="+"a8f77e1f023b4ff1ac1737309dcd3a86";
 			RestTemplate restTemplate = new RestTemplate();
-			if(!x.isEmpty()) {
-				 response = restTemplate.getForObject(x, String.class);
-				
+			if(!url.isEmpty()) {
+				 response = restTemplate.getForObject(url, String.class);				
 			}
+			
+		}
+		}catch (Exception ex) {
+			response = ex.toString();
 		}
 		
 		return response != null?response:"No Val found";
