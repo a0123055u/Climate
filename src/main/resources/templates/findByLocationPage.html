@@ -51,15 +51,15 @@
                 <tr>
                
                     <th>Place </th>                    
-                    <th>Temprature(Faren Heat)</th>
+                    <th>Temprature</th>
                     <th>Summary</th>                   
                      <th>Humidity(cubic meter)</th>
                       <th>Pressure(Pascal)</th>
                        <th>WindSpeed(KM/hr)</th>                       
-                         <th>Visibility(kM)</th>
-                          <th>Location</th>                         
+                         <th>Visibility</th>
+                          <th>Location</th>                      
                             
-                    <th>Get Summary</th>                    
+                    
                 </tr>
             </thead>
             <tbody>                   
@@ -100,7 +100,7 @@ $.ajax({
             }
             },error: function(fail){
             console.log("Error", fail);
-            alert(fail);
+            alert("Data not found for the Location, Please Check");
             }
 });
 

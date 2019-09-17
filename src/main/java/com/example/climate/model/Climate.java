@@ -1,30 +1,60 @@
 package com.example.climate.model;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
 
+import javax.persistence.Id;
+
+@Entity
+@Table(name="Climate")
 public class Climate {
 	@Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "climate_parameters")
 	private String id;
+	@Column(name="latitude")
 	private String latitude;
+	@Column(name="longitute")
 	private String longitute;
+	@Column(name="time")
 	private String time;
+	@Column(name="summary")
 	private String summary;
+	@Column(name="icon")
 	private String icon;
+	@Column(name="nearestStormDistance")
 	private String nearestStormDistance;
+	@Column(name="precipIntensity")
 	private String precipIntensity;
+	@Column(name="precipProbability")
 	private String precipProbability;
+	@Column(name="precipType")
 	private String precipType;
+	@Column(name="temperature")
 	private String temperature;
+	@Column(name="apparentTemperature")
 	private String apparentTemperature;
+	@Column(name="dewPoint")
 	private String dewPoint;
+	@Column(name="humidity")
 	private String humidity;
+	@Column(name="pressure")
 	private String pressure;
+	@Column(name="windSpeed")
 	private String windSpeed;
+	@Column(name="windGust")
 	private String windGust;
+	@Column(name="windBearing")
 	private String windBearing;
+	@Column(name="cloudCover")
 	private String cloudCover;
+	@Column(name="uvIndex")
 	private String uvIndex;
+	@Column(name="visibility")
 	private String visibility;
+	@Column(name="ozone")
 	private String ozone;	
 	
 	public String getId() {

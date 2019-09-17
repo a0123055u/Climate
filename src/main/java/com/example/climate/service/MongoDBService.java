@@ -8,8 +8,10 @@ import java.util.Map;
 import org.bson.BsonTimestamp;
 import org.bson.Document;
 import org.bson.conversions.Bson;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.repository.Query;
 
+import com.example.climate.repository.ClimateMysqlServiceImplementation;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
@@ -26,6 +28,8 @@ import java.util.logging.Logger;
 public class MongoDBService {
 	MongoClient mongoClient =  MongoClients.create("mongodb://localhost:27017");         
 	 MongoDatabase databases = mongoClient.getDatabase("climate");
+	 @Autowired
+		private  ClimateMysqlServiceImplementation climateMysqlServiceImplementation;
 	
 	 final Logger LOGGER = Logger.getLogger(MongoDBService.class.getName());		
 	
@@ -88,17 +92,21 @@ public class MongoDBService {
 	}
 	public boolean deleteRecordGrt3Days() {
 		boolean response = false; 
+		
 		try {
-			LocalDate date = LocalDate.now().minusDays(3);			
-			Bson filter = Filters.lt("ts", date);
+			LocalDate date = LocalDate.now().minusDays(0);			
+			Bson filter = Filters.lte("ts", date);
 //			BasicDBObject query = new BasicDBObject();
 		 MongoCollection<Document> doc = databases.getCollection("parameters");
-//		 FindIterable<Document> climateCollection = databases.getCollection("parameters").find(filter);	
-//		 for(Document x: climateCollection) {
-//			 System.out.println(x);
-//		 }		
+		 FindIterable<Document> climateCollection = databases.getCollection("parameters").find(filter);	
+		 for(Document x: climateCollection) {
+			 String val =x.getString("value");
+			 System.out.println(val+" ");
+//			 save the data to mySQL db as backup of data 
+			 climateMysqlServiceImplementation.addClimateParameter("42.8048","140.6874","1568730674","cloudy","ozone","31.5");
+		 }		
 		 
-		 doc.deleteMany(filter);
+//		 doc.deleteMany(filter);
 		 mongoClient.close();
 		 response = true;
 		}
