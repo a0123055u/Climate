@@ -94,8 +94,8 @@ public class MongoDBService {
 		boolean response = false; 
 		
 		try {
-			LocalDate date = LocalDate.now().minusDays(0);			
-			Bson filter = Filters.lte("ts", date);
+			LocalDate date = LocalDate.now().minusDays(3);			
+			Bson filter = Filters.lt("ts", date);
 //			BasicDBObject query = new BasicDBObject();
 		 MongoCollection<Document> doc = databases.getCollection("parameters");
 		 FindIterable<Document> climateCollection = databases.getCollection("parameters").find(filter);	
@@ -103,7 +103,7 @@ public class MongoDBService {
 			 String val =x.getString("value");
 			 System.out.println(val+" ");
 //			 save the data to mySQL db as backup of data 
-			 climateMysqlServiceImplementation.addClimateParameter("42.8048","140.6874","1568730674","cloudy","ozone","31.5");
+			 
 		 }		
 		 
 //		 doc.deleteMany(filter);
